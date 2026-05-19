@@ -5,6 +5,8 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Eyebrow, H1, H2, H3, Lede, Body, Mono, Rule, CTAButton } from "@/components/ui";
 import { contato } from "@/lib/contato";
+import { TreatedImage } from "@/components/treated-image";
+import { imagens } from "@/lib/imagens";
 
 type Form = {
   nome: string;
@@ -52,11 +54,11 @@ export default function ParaCompradoresPage() {
   return (
     <>
       <Header />
-      <main style={{ paddingTop: 96 }}>
-        {/* HERO */}
-        <section style={{ background: "var(--ibi-green)", color: "var(--ibi-cream)" }} className="relative">
-          <div className="pattern-bg pattern-bg--sparse absolute inset-0" />
-          <div className="relative max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 pt-16 lg:pt-24 pb-20">
+      <main>
+        {/* HERO CINEMATOGRÁFICO */}
+        <section className="relative" style={{ paddingTop: 96, color: "var(--ibi-cream)" }}>
+          <TreatedImage src={imagens.paraCompradores} alt="Paisagem aérea Pantanal" intensity="strong" priority className="absolute inset-0" />
+          <div className="relative max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 pt-16 lg:pt-24 pb-20 min-h-[600px] flex flex-col justify-end">
             <div className="flex items-center gap-5 pb-12" style={{ borderBottom: "1px solid var(--ibi-cream-rule)" }}>
               <span className="tick" />
               <Mono cream>Para diretores de ESG · compradores institucionais</Mono>
@@ -64,7 +66,7 @@ export default function ParaCompradoresPage() {
               <Mono cream dim>06 · 10</Mono>
             </div>
 
-            <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-16 lg:pt-24 items-end">
+            <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-16 items-end">
               <div className="lg:col-span-8">
                 <Eyebrow copper>Solicitar dossiê institucional</Eyebrow>
                 <H1 cream className="mt-5">O dossiê chega<br />em 48 horas.</H1>

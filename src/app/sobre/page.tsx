@@ -2,6 +2,8 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Eyebrow, H1, H2, H3, Lede, Body, Mono, Rule, CTAButton } from "@/components/ui";
 import { contato } from "@/lib/contato";
+import { TreatedImage } from "@/components/treated-image";
+import { imagens } from "@/lib/imagens";
 
 const time = [
   { nome: "[Diretor de Originação]", cargo: "Originação Territorial", bio: "Vinte anos em campo, três biomas. Conduz a equipe que negocia o hectare antes de qualquer baseline técnico." },
@@ -21,27 +23,28 @@ export default function SobrePage() {
   return (
     <>
       <Header />
-      <main style={{ paddingTop: 96 }}>
-        {/* HERO */}
-        <section style={{ background: "var(--ibi-cream)" }}>
-          <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 pt-16 lg:pt-24 pb-20">
-            <div className="flex items-center gap-5 pb-12" style={{ borderBottom: "1px solid var(--ibi-rule)" }}>
+      <main>
+        {/* HERO CINEMATOGRÁFICO */}
+        <section className="relative" style={{ paddingTop: 96, color: "var(--ibi-cream)" }}>
+          <TreatedImage src={imagens.sobre} alt="Território brasileiro" intensity="strong" priority className="absolute inset-0" />
+          <div className="relative max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 pt-16 lg:pt-24 pb-20 min-h-[600px] flex flex-col justify-end">
+            <div className="flex items-center gap-5 pb-12" style={{ borderBottom: "1px solid var(--ibi-cream-rule)" }}>
               <span className="tick" />
-              <Mono>Sobre · originadores · governança</Mono>
-              <div className="flex-1 h-px" style={{ background: "var(--ibi-rule)" }} />
-              <Mono dim>07 · 10</Mono>
+              <Mono cream>Sobre · originadores · governança</Mono>
+              <div className="flex-1 h-px" style={{ background: "var(--ibi-cream-rule)" }} />
+              <Mono cream dim>07 · 10</Mono>
             </div>
 
-            <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-16 lg:pt-24">
+            <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-16">
               <div className="lg:col-span-7">
                 <Eyebrow copper>Quem somos</Eyebrow>
-                <H1 className="mt-5">Uma originadora,<br />não uma agência.</H1>
+                <H1 cream className="mt-5">Uma originadora,<br />não uma agência.</H1>
               </div>
               <div className="lg:col-span-5 flex flex-col gap-6">
-                <Lede>
+                <Lede cream>
                   A IBI Green nasceu em 2026, em Campo Grande (MS), com a tese de que o Brasil tem o maior potencial florestal do mundo — mas falta uma originadora institucional capaz de empacotar esse potencial em ativo verificável.
                 </Lede>
-                <Body>
+                <Body cream>
                   Operamos no Mato Grosso do Sul porque é o único estado brasileiro que reúne Cerrado, Pantanal e Mata Atlântica de transição. Um estado, três biomas, três cadeias de custódia distintas.
                 </Body>
               </div>

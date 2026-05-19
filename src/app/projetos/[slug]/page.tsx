@@ -5,6 +5,8 @@ import { Footer } from "@/components/footer";
 import { Eyebrow, H1, H2, H3, Lede, Body, Mono, Rule, CTAButton } from "@/components/ui";
 import { getProjeto, projetos } from "@/lib/projetos";
 import { contato } from "@/lib/contato";
+import { TreatedImage } from "@/components/treated-image";
+import { getProjetoImagem } from "@/lib/imagens";
 
 export function generateStaticParams() {
   return projetos.map((p) => ({ slug: p.slug }));
@@ -22,29 +24,36 @@ export default async function ProjetoDetailPage({ params }: { params: Promise<{ 
   return (
     <>
       <Header />
-      <main style={{ paddingTop: 96 }}>
-        {/* HERO — ficha PPM */}
-        <section style={{ background: "var(--ibi-cream)" }}>
-          <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 pt-16 lg:pt-24 pb-12">
-            <div className="flex items-center gap-5 pb-8" style={{ borderBottom: "1px solid var(--ibi-rule)" }}>
+      <main>
+        {/* HERO IMAGE — território do projeto */}
+        <section className="relative" style={{ paddingTop: 96, color: "var(--ibi-cream)" }}>
+          <TreatedImage
+            src={getProjetoImagem(p.slug, p.bioma)}
+            alt={`Território do projeto ${p.nome}`}
+            intensity="strong"
+            priority
+            className="absolute inset-0"
+          />
+          <div className="relative max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 pt-16 lg:pt-24 pb-16 lg:pb-24 min-h-[640px] flex flex-col justify-end">
+            <div className="flex items-center gap-5 pb-12" style={{ borderBottom: "1px solid var(--ibi-cream-rule)" }}>
               <span className="tick" />
-              <Mono>Ficha de projeto · {p.codigo}</Mono>
-              <div className="flex-1 h-px" style={{ background: "var(--ibi-rule)" }} />
-              <Mono dim>Bioma · {p.bioma}</Mono>
+              <Mono cream>Ficha de projeto · {p.codigo}</Mono>
+              <div className="flex-1 h-px" style={{ background: "var(--ibi-cream-rule)" }} />
+              <Mono cream dim>Bioma · {p.bioma}</Mono>
             </div>
 
-            <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-12 lg:pt-16">
+            <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-12">
               <div className="lg:col-span-8">
                 <Mono copper>{p.bioma} · {p.municipio}</Mono>
-                <H1 className="mt-5">{p.nome}.</H1>
-                <Lede className="mt-8">{p.resumo}</Lede>
+                <H1 cream className="mt-5">{p.nome}.</H1>
+                <Lede cream className="mt-8">{p.resumo}</Lede>
               </div>
               <div className="lg:col-span-4">
-                <div style={{ background: "var(--ibi-green)", color: "var(--ibi-cream)", padding: 24 }}>
-                  <Mono cream copper>Status</Mono>
+                <div style={{ background: "var(--ibi-green-deep)", color: "var(--ibi-cream)", padding: 24, border: "1px solid var(--ibi-cream-rule)" }}>
+                  <Mono copper>Status</Mono>
                   <H3 cream className="mt-3">{p.status}.</H3>
                   <Rule cream className="my-5" />
-                  <Mono cream copper>Padrão metodológico</Mono>
+                  <Mono copper>Padrão metodológico</Mono>
                   <p className="mt-2" style={{ fontFamily: "var(--font-mono)", fontSize: 13, letterSpacing: "0.05em", color: "var(--ibi-cream)" }}>{p.padrao}</p>
                 </div>
               </div>

@@ -2,29 +2,32 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Eyebrow, H1, H2, Lede, Body, Mono, Rule, CTAButton } from "@/components/ui";
 import { contato } from "@/lib/contato";
+import { TreatedImage } from "@/components/treated-image";
+import { imagens } from "@/lib/imagens";
 
 export default function ContatoPage() {
   return (
     <>
       <Header />
-      <main style={{ paddingTop: 96 }}>
-        {/* HERO */}
-        <section style={{ background: "var(--ibi-cream)" }}>
-          <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 pt-16 lg:pt-24 pb-20">
-            <div className="flex items-center gap-5 pb-12" style={{ borderBottom: "1px solid var(--ibi-rule)" }}>
+      <main>
+        {/* HERO CINEMATOGRÁFICO */}
+        <section className="relative" style={{ paddingTop: 96, color: "var(--ibi-cream)" }}>
+          <TreatedImage src={imagens.contato} alt="Sede operacional · Mato Grosso do Sul" intensity="strong" priority className="absolute inset-0" />
+          <div className="relative max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 pt-16 lg:pt-24 pb-20 min-h-[540px] flex flex-col justify-end">
+            <div className="flex items-center gap-5 pb-12" style={{ borderBottom: "1px solid var(--ibi-cream-rule)" }}>
               <span className="tick" />
-              <Mono>Contato · institucional</Mono>
-              <div className="flex-1 h-px" style={{ background: "var(--ibi-rule)" }} />
-              <Mono dim>10 · 10</Mono>
+              <Mono cream>Contato · institucional</Mono>
+              <div className="flex-1 h-px" style={{ background: "var(--ibi-cream-rule)" }} />
+              <Mono cream dim>10 · 10</Mono>
             </div>
 
-            <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-16 lg:pt-24 items-end">
+            <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-16 items-end">
               <div className="lg:col-span-8">
                 <Eyebrow copper>Fale com a originação</Eyebrow>
-                <H1 className="mt-5">Contato.</H1>
+                <H1 cream className="mt-5">Contato.</H1>
               </div>
               <div className="lg:col-span-4">
-                <Lede>
+                <Lede cream>
                   Três canais. Cada um para uma finalidade específica. Escolha o que cabe no seu pedido.
                 </Lede>
               </div>

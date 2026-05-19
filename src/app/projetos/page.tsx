@@ -3,6 +3,8 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Eyebrow, H1, H2, H3, Lede, Body, Mono, Rule } from "@/components/ui";
 import { biomasSummary, projetos } from "@/lib/projetos";
+import { TreatedImage } from "@/components/treated-image";
+import { imagens, getProjetoImagem } from "@/lib/imagens";
 
 export default function ProjetosPage() {
   const totalHa = projetos.reduce((s, p) => s + p.hectares, 0);
@@ -10,30 +12,30 @@ export default function ProjetosPage() {
   return (
     <>
       <Header />
-      <main style={{ paddingTop: 96 }}>
-        {/* HERO */}
-        <section style={{ background: "var(--ibi-cream)" }}>
-          <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 pt-16 lg:pt-24 pb-12">
-            <div className="flex items-center gap-5 pb-12" style={{ borderBottom: "1px solid var(--ibi-rule)" }}>
+      <main>
+        {/* HERO CINEMATOGRÁFICO */}
+        <section className="relative" style={{ paddingTop: 96, color: "var(--ibi-cream)" }}>
+          <TreatedImage src={imagens.biomas.Cerrado} alt="Portfólio Mato Grosso do Sul" intensity="strong" priority className="absolute inset-0" />
+          <div className="relative max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 pt-16 lg:pt-24 pb-20 min-h-[640px] flex flex-col justify-end">
+            <div className="flex items-center gap-5 pb-12" style={{ borderBottom: "1px solid var(--ibi-cream-rule)" }}>
               <span className="tick" />
-              <Mono>Inventário · 12 projetos · 3 biomas</Mono>
-              <div className="flex-1 h-px" style={{ background: "var(--ibi-rule)" }} />
-              <Mono dim>safra 2026</Mono>
+              <Mono cream>Inventário · 12 projetos · 3 biomas</Mono>
+              <div className="flex-1 h-px" style={{ background: "var(--ibi-cream-rule)" }} />
+              <Mono cream dim>safra 2026</Mono>
             </div>
 
-            <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-16 lg:pt-24 items-end">
+            <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-16 items-end">
               <div className="lg:col-span-8">
                 <Eyebrow copper>Portfólio territorial</Eyebrow>
-                <H1 className="mt-5">Projetos.</H1>
+                <H1 cream className="mt-5">Projetos.</H1>
               </div>
               <div className="lg:col-span-4">
-                <Lede>
+                <Lede cream>
                   Doze projetos ativos no Mato Grosso do Sul, cobrindo Cerrado, Pantanal e Mata Atlântica de transição. Cada um com coordenada, comunidade hospedeira e dossiê público.
                 </Lede>
               </div>
             </div>
 
-            {/* Summary table */}
             <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-10">
               {[
                 { v: projetos.length.toString(), l: "Projetos ativos" },
@@ -42,10 +44,10 @@ export default function ProjetosPage() {
                 { v: "100%", l: "Cadeia de custódia documentada" },
               ].map((m, i) => (
                 <div key={i}>
-                  <div style={{ fontFamily: "var(--font-serif)", fontSize: 56, lineHeight: 1, letterSpacing: "-0.02em", color: "var(--ibi-green)" }}>
+                  <div style={{ fontFamily: "var(--font-serif)", fontSize: 56, lineHeight: 1, letterSpacing: "-0.02em", color: "var(--ibi-cream)" }}>
                     {m.v}
                   </div>
-                  <Mono dim className="block mt-3">{m.l}</Mono>
+                  <Mono cream dim className="block mt-3">{m.l}</Mono>
                 </div>
               ))}
             </div>
@@ -86,28 +88,30 @@ export default function ProjetosPage() {
                       <Link
                         key={p.slug}
                         href={`/projetos/${p.slug}`}
-                        className="grid lg:grid-cols-12 gap-6 lg:gap-8 py-8 hover:bg-[var(--ibi-cream-dim)]/40 transition-colors group"
+                        className="grid lg:grid-cols-12 gap-6 lg:gap-8 py-6 lg:py-7 hover:bg-[var(--ibi-cream-dim)]/40 transition-colors group items-center"
                         style={{ borderBottom: "1px solid var(--ibi-rule)" }}
                       >
+                        <div className="lg:col-span-2">
+                          <TreatedImage src={getProjetoImagem(p.slug, p.bioma)} alt={p.nome} intensity="medium" fill={false} width={400} height={300} className="aspect-[4/3]" />
+                        </div>
                         <div className="lg:col-span-1"><Mono copper>{p.codigo}</Mono></div>
                         <div className="lg:col-span-3">
                           <H3 className="group-hover:underline">{p.nome}.</H3>
                           <Mono dim className="block mt-2">{p.municipio}</Mono>
                         </div>
-                        <div className="lg:col-span-4">
-                          <p style={{ fontFamily: "var(--font-sans)", fontSize: 15, lineHeight: 1.5, color: "var(--ibi-ink-70)", maxWidth: "52ch" }}>
-                            {p.resumo}
+                        <div className="lg:col-span-2">
+                          <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, lineHeight: 1.5, color: "var(--ibi-ink-70)" }}>
+                            {p.resumo.slice(0, 110)}…
                           </p>
                         </div>
                         <div className="lg:col-span-2">
-                          <div style={{ fontFamily: "var(--font-serif)", fontSize: 28, lineHeight: 1, color: "var(--ibi-green)" }}>
+                          <div style={{ fontFamily: "var(--font-serif)", fontSize: 26, lineHeight: 1, color: "var(--ibi-green)" }}>
                             {p.hectares.toLocaleString("pt-BR")}<i style={{ fontStyle: "italic", fontSize: "0.4em", marginLeft: 4, opacity: 0.6 }}>ha</i>
                           </div>
-                          <Mono dim className="block mt-2">Sob contrato</Mono>
+                          <Mono dim className="block mt-2">{p.padrao}</Mono>
                         </div>
                         <div className="lg:col-span-2">
-                          <Mono className="block mb-1">{p.padrao}</Mono>
-                          <Mono copper className="block">{p.status}</Mono>
+                          <Mono copper>{p.status}</Mono>
                         </div>
                       </Link>
                     ))}

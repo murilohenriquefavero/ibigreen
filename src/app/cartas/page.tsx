@@ -3,6 +3,8 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Eyebrow, H1, H2, H3, Lede, Body, Mono, Rule } from "@/components/ui";
 import { cartas } from "@/lib/cartas";
+import { TreatedImage } from "@/components/treated-image";
+import { getCartaImagem } from "@/lib/imagens";
 
 export default function CartasPage() {
   return (
@@ -41,19 +43,22 @@ export default function CartasPage() {
                 <Link
                   key={c.slug}
                   href={`/cartas/${c.slug}`}
-                  className="grid lg:grid-cols-12 gap-6 py-10 lg:py-14 hover:bg-[var(--ibi-cream-dim)]/40 transition-colors"
+                  className="grid lg:grid-cols-12 gap-6 py-8 lg:py-10 hover:bg-[var(--ibi-cream-dim)]/40 transition-colors items-center"
                   style={{ borderBottom: "1px solid var(--ibi-rule)" }}
                 >
                   <div className="lg:col-span-1"><Mono copper>{String(i + 1).padStart(2, "0")}</Mono></div>
                   <div className="lg:col-span-2">
+                    <TreatedImage src={getCartaImagem(c.slug)} alt={c.titulo} intensity="medium" fill={false} width={400} height={300} className="aspect-[4/3]" />
+                  </div>
+                  <div className="lg:col-span-2 flex flex-col gap-1">
                     <Mono dim>{c.data}</Mono>
-                    <Mono dim className="block mt-2">{c.subtitulo}</Mono>
+                    <Mono dim>{c.subtitulo}</Mono>
                   </div>
-                  <div className="lg:col-span-6">
+                  <div className="lg:col-span-5">
                     <H3>{c.titulo}</H3>
-                    <Body dim className="mt-4">{c.resumo}</Body>
+                    <Body dim className="mt-3">{c.resumo}</Body>
                   </div>
-                  <div className="lg:col-span-3 flex flex-col gap-3 lg:items-end">
+                  <div className="lg:col-span-2 flex flex-col gap-3 lg:items-end">
                     <Mono>{c.autor}</Mono>
                     <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--ibi-copper)", borderBottom: "1px solid var(--ibi-copper)", paddingBottom: 4 }}>
                       Ler →

@@ -4,6 +4,8 @@ import { Footer } from "@/components/footer";
 import { Vesica } from "@/components/vesica";
 import { Eyebrow, H1, H2, H3, Lede, Body, Mono, Rule, CTAButton } from "@/components/ui";
 import { contato } from "@/lib/contato";
+import { TreatedImage } from "@/components/treated-image";
+import { imagens } from "@/lib/imagens";
 
 const fluxo = [
   { fase: "Hectare", tempo: "Mês 0", desc: "O ato começa no hectare candidato. Verificamos titularidade, sobreposição e elegibilidade jurídica antes de qualquer outra coisa." },
@@ -18,31 +20,32 @@ export default function OriginacaoPage() {
   return (
     <>
       <Header />
-      <main style={{ paddingTop: 96 }}>
-        {/* HERO */}
-        <section style={{ background: "var(--ibi-cream)" }} className="relative">
-          <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 pt-16 lg:pt-24 pb-20">
-            <div className="flex items-center gap-5 pb-12" style={{ borderBottom: "1px solid var(--ibi-rule)" }}>
+      <main>
+        {/* HERO CINEMATOGRÁFICO */}
+        <section className="relative" style={{ paddingTop: 96, color: "var(--ibi-cream)" }}>
+          <TreatedImage src={imagens.originacao} alt="Hectare florestal" intensity="strong" priority className="absolute inset-0" />
+          <div className="relative max-w-[1440px] mx-auto px-6 md:px-10 lg:px-14 pt-16 lg:pt-24 pb-20 min-h-[640px] flex flex-col justify-end">
+            <div className="flex items-center gap-5 pb-12" style={{ borderBottom: "1px solid var(--ibi-cream-rule)" }}>
               <span className="tick" />
-              <Mono>O que é uma originadora</Mono>
-              <div className="flex-1 h-px" style={{ background: "var(--ibi-rule)" }} />
-              <Mono dim>05 · 10</Mono>
+              <Mono cream>O que é uma originadora</Mono>
+              <div className="flex-1 h-px" style={{ background: "var(--ibi-cream-rule)" }} />
+              <Mono cream dim>05 · 10</Mono>
             </div>
 
-            <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-16 lg:pt-24">
+            <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-16">
               <div className="lg:col-span-8">
                 <Eyebrow copper>Do hectare ao livro-razão</Eyebrow>
-                <H1 className="mt-5">Originação.</H1>
-                <Lede className="mt-8">
+                <H1 cream className="mt-5">Originação.</H1>
+                <Lede cream className="mt-8">
                   Originar carbono é o ato de trazer uma tonelada de CO₂ equivalente à existência como ativo registrado — partindo de um hectare específico, com uma comunidade hospedeira, sob um padrão metodológico, com uma cadeia de custódia auditável.
                 </Lede>
-                <p className="mt-6 max-w-[58ch]" style={{ fontFamily: "var(--font-sans)", fontSize: 17, lineHeight: 1.6, color: "var(--ibi-ink)" }}>
+                <p className="mt-6 max-w-[58ch]" style={{ fontFamily: "var(--font-sans)", fontSize: 17, lineHeight: 1.6, color: "var(--ibi-cream)", opacity: 0.9 }}>
                   É o oposto de gerar carbono em volume sem rastreabilidade. É o oposto de revender toneladas de terceiros. Originar é fazer o ativo nascer com endereço — e segui-lo pela vida útil do contrato.
                 </p>
               </div>
-              <div className="lg:col-span-4 flex items-center justify-center">
-                <div style={{ width: 200, height: 300, background: "var(--ibi-green)", display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}>
-                  <Vesica variant="inverse" style={{ width: "100%", height: "100%" }} />
+              <div className="lg:col-span-4 hidden lg:flex items-center justify-center">
+                <div style={{ width: 200, height: 300, background: "var(--ibi-cream)", display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}>
+                  <Vesica variant="filled" style={{ color: "var(--ibi-green)", width: "100%", height: "100%" }} />
                 </div>
               </div>
             </div>
